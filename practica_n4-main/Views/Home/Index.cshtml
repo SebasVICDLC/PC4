@@ -1,0 +1,106 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    body {
+        background-color: #00d9ff;
+    }
+
+    .container {
+        margin-top: 50px;
+        box-shadow: #2c3e50;
+    }
+
+    .card {
+        border: 1px solid #dcdcdc;
+        border-radius: 10px;
+    }
+
+    .card-header {
+        background-color: rgb(35, 93, 122); 
+        color: #d2d9e0; 
+        border-radius: 10px 10px 0 0;
+    }
+
+    .btn-secondary {
+        background-color: #cbf3ff; 
+        color: #000000;
+
+    }
+
+    .btn-secondary:hover {
+        background-color: #000000; 
+    }
+
+    .form-control {
+        border-radius: 4px;
+    }
+
+    .btn-primary {
+        background-color: #58a1dc; 
+        border-color: #badc58;
+        color: black;
+    }
+
+    .btn-primary:hover {
+        background-color: #badc58; 
+        border-color: #badc58;
+    }
+
+    .text-success {
+        color: rgb(0, 255, 42)244, 103); 
+    }
+
+    .text-danger {
+        color: #fe0303; 
+    }
+    
+    .form-group{
+        padding-bottom: 10px;
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="display-4 text-center">Sentiment Analysis</h1>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="/Home/AnalyzeSentiment">
+
+                        <div class="form-group">
+                            <label for="sentimentText">Enter Text:</label>
+                            <textarea class="form-control" id="sentimentText" name="text" rows="4" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Analyze Sentiment</button>
+
+                        <a asp-action="ClearText" class="btn btn-secondary ml-2">Clear Text</a>
+                    </form>
+
+                    @if (ViewBag.Sentiment != null)
+                    {
+                        <div class="mt-4">
+                            <h3>Analysis Result:</h3>
+                            <p class="lead">
+                                The sentiment is: 
+                                @if (ViewBag.Sentiment == "Positive")
+                                    {
+                                        <span class="text-success">Positive</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-danger">Negative</span>
+                                    }
+
+                            </p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
